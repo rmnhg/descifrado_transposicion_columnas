@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * Descifrador de textos cifrados por transposición de columnas por fuerza bruta
- * @author Ramón Hernández García
- * @version 1.1.0
+ * Descifrador de textos cifrados por transposiciÃ³n de columnas por fuerza bruta
+ * @author RamÃ³n HernÃ¡ndez GarcÃ­a
+ * @version 1.2.0
  *
  */
 public class DescifradorTranspoColumnas {
@@ -27,9 +27,9 @@ public class DescifradorTranspoColumnas {
 	}
 
 	/**
-	 * Calcula el factorial de un número recursivamente
-	 * @param numero número del que se calcula el factorial
-	 * @return el factorial del número pasado como parámetro
+	 * Calcula el factorial de un nÃºmero recursivamente
+	 * @param numero nÃºmero del que se calcula el factorial
+	 * @return el factorial del nÃºmero pasado como parÃ¡metro
 	 */
 	private int factorial(int numero) {
 		if (numero <= 1)
@@ -53,9 +53,9 @@ public class DescifradorTranspoColumnas {
 			Nodo nodoActual = nodoPrincipal;
 			int indiceVisitados = 1;
 			buclePpal: while (indiceVisitados < numeroCombinaciones) {
-				//Creo los subnodos si el nodo destino tiene nivel menor o igual que el nivel máximo
+				//Creo los subnodos si el nodo destino tiene nivel menor o igual que el nivel mÃ¡ximo
 				if ((nodoActual.nivel + 1) <= nEspacios ) {
-					//Creo los subnodos solo si no están creados de antes
+					//Creo los subnodos solo si no estÃ¡n creados de antes
 					if (nodoActual.subNodos.isEmpty()) {
 						for (int i = 1; i <= longitudClave; i++) {
 							//Creo un nuevo subNodo si tiene indice mayor al que tenemos ahora
@@ -73,7 +73,7 @@ public class DescifradorTranspoColumnas {
 							continue buclePpal;
 						}
 					}
-					//Todos mis nodos están visitados, marco este nodo como visitado y me vuelvo al anterior si existe
+					//Todos mis nodos estÃ¡n visitados, marco este nodo como visitado y me vuelvo al anterior si existe
 					nodosVisitados.add(nodoActual);//addNodoVisitado(nodosVisitados, nodoActual);
 					if (nodoActual.nodoAnterior == null) {
 						//Si no hay nodo anterior acabamos
@@ -83,7 +83,7 @@ public class DescifradorTranspoColumnas {
 						nodoActual = nodoActual.nodoAnterior;
 					}
 				} else {
-					//Marco el nodo como visitado y saco y guardo su combinación
+					//Marco el nodo como visitado y saco y guardo su combinaciÃ³n
 					nodosVisitados.add(nodoActual);//addNodoVisitado(nodosVisitados, nodoActual);
 					guardaNodoEnCombinaciones(combEsps, nodoActual);
 					nodoActual = nodoActual.nodoAnterior;
@@ -93,7 +93,7 @@ public class DescifradorTranspoColumnas {
 			 * Nodo 0 id -1
 					creo nodos 1 2 3 4 5 (con i mayor que la i que ya tenemos)
 					Me meto en el primero no visitado de los creados si el nivel es menor o igual que nEspacios.
-					 ->Si lo encuentro, me meto en él y repito el creo nodos con i mayor que la i que ya tenemos
+					 ->Si lo encuentro, me meto en Ã©l y repito el creo nodos con i mayor que la i que ya tenemos
 					 ->Si no encuentro cojo el nodo anterior (marcando el nodo como visitado) si no es null y busco el primero no visitado.
 					 ->Si no encuentro y el nodo anterior es null, (marco como visitado este nodo) y termino
 					Si el nivel es mayor que nEspacios, (se marca el nodo como visitado), se llama a guardaNodo(combEsps, nodo), y se vuelve al anterior, buscando un nodo no visitado
@@ -113,13 +113,13 @@ public class DescifradorTranspoColumnas {
 			int combActual = 0;
 			while (combActual < numeroCombinaciones) {
 				ArrayList<Integer> numerosYaMetidos = new ArrayList<Integer>();
-				//Añado los números anteriores de cada combinacion
+				//AÃ±ado los nÃºmeros anteriores de cada combinacion
 				for (int i = 0; i < posCifraActual; i++) {
 					numerosYaMetidos.add(combCols[combActual][i]);
 				}
-				//Recojo y recorro los números siguientes
+				//Recojo y recorro los nÃºmeros siguientes
 				for (int numAMeter: getSiguienteNumeroSinRepeticionImportaOrden(numerosYaMetidos)) {
-					//Se copia el número (longitudClave -(posCifraActual+1))! veces
+					//Se copia el nÃºmero (longitudClave -(posCifraActual+1))! veces
 					for (int i = 0; i < factorial(longitudClave -(posCifraActual+1)); i++) {
 						combCols[combActual][posCifraActual] = numAMeter;
 						combActual++;
@@ -131,10 +131,10 @@ public class DescifradorTranspoColumnas {
 	}
 
 	/**
-	 * Extrae y guarda la combinación de espacios a partir de las combinaciones de espacios
-	 * ya existentes y del nodo terminal, del que además se extraen los nodos anteriores
-	 * @param combEsps array de combinaciones de espacios donde se guardará la combinación hallada
-	 * @param nodo nodo terminal del que se saca una combinación de espacios
+	 * Extrae y guarda la combinaciÃ³n de espacios a partir de las combinaciones de espacios
+	 * ya existentes y del nodo terminal, del que ademÃ¡s se extraen los nodos anteriores
+	 * @param combEsps array de combinaciones de espacios donde se guardarÃ¡ la combinaciÃ³n hallada
+	 * @param nodo nodo terminal del que se saca una combinaciÃ³n de espacios
 	 */
 	private void guardaNodoEnCombinaciones(int[][] combEsps, Nodo nodo) {
 		int longitud = combEsps.length, longitudCombinaciones = combEsps[0].length;
@@ -150,7 +150,7 @@ public class DescifradorTranspoColumnas {
 				Nodo nodoVisitado = nodo;
 				for (int j = longitudCombinaciones - 1; j >= 0; j--) {
 					if (nodoVisitado == null) {
-						System.out.println("¡Cuidado! Nodo nulo en guardaNodoEnCombinaciones");
+						System.out.println("Â¡Cuidado! Nodo nulo en guardaNodoEnCombinaciones");
 						return;
 					}
 					combEsps[i][j] = nodoVisitado.i;
@@ -163,9 +163,9 @@ public class DescifradorTranspoColumnas {
 	}
 
 	/**
-	 * Obtiene los siguientes posibles números de una combinación de columnas a partir de las anteriores
-	 * @param numerosYaMetidos los números de las columnas que ya se han metido en posiciones anteriores de la combinación
-	 * @return la lista de posibles nuevos números para una posición de una combinación de columnas
+	 * Obtiene los siguientes posibles nÃºmeros de una combinaciÃ³n de columnas a partir de las anteriores
+	 * @param numerosYaMetidos los nÃºmeros de las columnas que ya se han metido en posiciones anteriores de la combinaciÃ³n
+	 * @return la lista de posibles nuevos nÃºmeros para una posiciÃ³n de una combinaciÃ³n de columnas
 	 */
 	private ArrayList<Integer> getSiguienteNumeroSinRepeticionImportaOrden(ArrayList<Integer> numerosYaMetidos) {
 		ArrayList<Integer> res = new ArrayList<Integer>();
@@ -178,7 +178,7 @@ public class DescifradorTranspoColumnas {
 	}
 
 	/**
-	 * Dibuja una matriz pasada como parámetro imprimiendo fila a fila
+	 * Dibuja una matriz pasada como parÃ¡metro imprimiendo fila a fila
 	 * @param matriz es la matriz que se dibuja
 	 */
 	public void dibujarMatriz(char[][] matriz) {
@@ -186,6 +186,7 @@ public class DescifradorTranspoColumnas {
 			return;
 		}
 		int filas = matriz.length, columnas = matriz[0].length;
+		System.out.println("");
 		for (int fila = 0; fila < filas; fila++) {
 			String strFila = "";
 			for (int columna = 0; columna < columnas; columna++) {
@@ -205,7 +206,24 @@ public class DescifradorTranspoColumnas {
 	}
 
 	/**
-	 * Pasa una matriz a una string juntando todas sus filas en una única línea
+	 * Nos informa de si una matriz tiene todos sus espacios en las Ãºltimas columnas de la Ãºltima fila
+	 * @param matriz es la matriz que se comprueba
+	 * @return si todos los espacios estÃ¡n al final o no
+	 */
+	private boolean matrizTieneEspaciosSoloAlFinal(char[][] matriz) {
+		int filas = textoCifrado.length()/longitudClave, columnas = this.longitudClave, espaciosTotales;
+		filas = ((textoCifrado.length() % longitudClave) > 0) ? filas+1 : filas;
+		espaciosTotales = filas*columnas - textoCifrado.length();
+		int espaciosEncontrados = 0;
+		//Recorro las Ãºltimas espaciosTotales columnas buscando espacios
+		for (int columna = columnas-1; columna > columnas-(espaciosTotales + 1); columna--) {
+			espaciosEncontrados +=  (matriz[filas-1][columna] == '_') ? 1 : 0;
+		}
+		return espaciosTotales == espaciosEncontrados;
+	}
+
+	/**
+	 * Pasa una matriz a una string juntando todas sus filas en una Ãºnica lÃ­nea quitando los espacios "_"
 	 * @param matriz es la matriz de la que se quiere obtener una string
 	 * @return string con el contenido de la matriz
 	 */
@@ -214,14 +232,16 @@ public class DescifradorTranspoColumnas {
 		String str = "";
 		for (int i = 0; i < filas; i++) {
 			for (int j = 0; j < columnas; j++) {
-				str = str.concat(""+Character.toLowerCase(matriz[i][j]));
+				if (matriz[i][j] != '_') {
+					str = str.concat(""+Character.toLowerCase(matriz[i][j]));
+				}
 			}
 		}
 		return str;
 	}
 
 	/**
-	 * Reordena las columnas de una matriz a partir de una combinación de columnas dada
+	 * Reordena las columnas de una matriz a partir de una combinaciÃ³n de columnas dada
 	 * @param ordenColumnas orden de las columnas de la nueva matriz
 	 * @param matriz es la matriz que se desea reordenar
 	 * @return matriz con columnas reordenadas
@@ -239,25 +259,31 @@ public class DescifradorTranspoColumnas {
 	}
 
 	/**
-	 *  
+	 *  Descifra el texto guardado probando con combinaciones de la longitud guardada
 	 */
 	public void descifrarTexto() {
+		boolean descifrado = false;
 		for (int[] posEspacios: getCombinacionesEspacios()) {
 			for (int[] combCols: getCombinacionesColumnas()) {
 				char[][] matriz = reordenarMatriz(combCols, obtenerMatrizCodificada(posEspacios));
-				if (matrizContienePista(matriz)) { //No encuentra ninguna combinacion
+				if (matrizContienePista(matriz) && matrizTieneEspaciosSoloAlFinal(matriz)) { //No encuentra ninguna combinacion
+					descifrado = true;
 					dibujarMatriz(matriz);
-					System.out.println("Espacios en: "+imprimeArray(posEspacios));
-					System.out.println("Orden de las columnas: "+imprimeArray(combCols));
+					System.out.println("Espacios en las columnas "+arrayAString(posEspacios)+" de la matriz cifrada");
+					System.out.println("Orden de las columnas usado para descifrar: "+arrayAString(combCols));
+					System.out.println("Posible clave de cifrado: "+combinacionColumnasAClave(getCombinacionCifrado(combCols)));
 					System.out.println("Texto descifrado: "+matrizAString(matriz));
 				}
 			}
 		}
+		if (!descifrado) {
+			System.out.println("No se ha podido encontrar un texto descifrado con la pista \""+this.pista+"\" y longitud de clave "+this.longitudClave+". Pruebe a cambiar la longitud de clave y compruebe que la pista es correcta");
+		}
 	}
 
 	/**
-	 * Obtiene la matriz con el texto cifrado añadiendo espacios en las columnas especificadas en la última fila de la matriz
-	 * @param posicionesEspacios array con las columnas que contienen un espacio en la última fila
+	 * Obtiene la matriz con el texto cifrado aÃ±adiendo espacios en las columnas especificadas en la Ãºltima fila de la matriz
+	 * @param posicionesEspacios array con las columnas que contienen un espacio en la Ãºltima fila
 	 * @return matriz formada con el texto y los espacios
 	 */
 	public char[][] obtenerMatrizCodificada(int[] posicionesEspacios) {
@@ -288,10 +314,10 @@ public class DescifradorTranspoColumnas {
 	}
 
 	/**
-	 * Imprime un array especificado como parrámetro
+	 * Imprime un array especificado como parrÃ¡metro
 	 * @param array es el array que se imprime por la consola
 	 */
-	private String imprimeArray(int[] array) {
+	private String arrayAString(int[] array) {
 		String strComb = "{";
 		for (int numero: array) {
 			if (numero == array[array.length-1]) {
@@ -303,13 +329,44 @@ public class DescifradorTranspoColumnas {
 		return strComb+"}";
 	}
 
+	/**
+	 * Obtiene la combinaciÃ³n de columnas usada para cifrar un texto a partir de la combinaciÃ³n
+	 * de columnas usada para descifrar dicho texto
+	 * @param combColsDesc la combinaciÃ³n de columnas usada para descifrar el texto
+	 * @return la combinaciÃ³n de columnas usada para cifrar el texto
+	 */
+	private int[] getCombinacionCifrado(int[] combColsDesc) {
+		int[] combColsCif = new int[combColsDesc.length];
+		for (int columnaBuscada = 1; columnaBuscada <= combColsDesc.length; columnaBuscada++) {
+			int idxCombColsCif = columnaBuscada - 1;
+				for (int idxColumnaSrc = 0; idxColumnaSrc < combColsDesc.length; idxColumnaSrc++) {
+					if (combColsDesc[idxColumnaSrc] == columnaBuscada)
+						combColsCif[idxCombColsCif] = idxColumnaSrc+1;
+				}
+		}
+		return combColsCif;
+	}
+
+	/**
+	 * Devuelve una clave textual a partir de una combinaciÃ³n de columnas usada para cifrar
+	 * @param combColsCif la combinaciÃ³n de columnas usada para cifrar un texto
+	 * @return una de las posibles claves usada para cifrar dicho texto
+	 */
+	private String combinacionColumnasAClave(int[] combColsCif) {
+		String clave = "";
+		for (int col: combColsCif) {
+			clave = clave.concat(""+(char) (col + (int) 'a'));
+		}
+		return clave;
+	}
+
 /**
- * Clase de nodos para formar árboles para el cálculo de las combinaciones de espacios que se pueden hacer
- * @author Ramón Hernández García
+ * Clase de nodos para formar Ã¡rboles para el cÃ¡lculo de las combinaciones de espacios que se pueden hacer
+ * @author RamÃ³n HernÃ¡ndez GarcÃ­a
  *
  */
 class Nodo {
-	int i, nivel; //i es el número asociado al nodo, nivel es el árbol en el que se encuentra (1º, 2º, 3º...)
+	int i, nivel; //i es el nÃºmero asociado al nodo, nivel es el Ã¡rbol en el que se encuentra (1Âº, 2Âº, 3Âº...)
 	public Nodo nodoAnterior;
 	public ArrayList<Nodo> subNodos;
 	Nodo() {
